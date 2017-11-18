@@ -54,6 +54,7 @@
 					<p>{!! $post->content !!}</p>
 				@endif
 
+{!! $post->content !!}
 			</a>
 		</section>
 
