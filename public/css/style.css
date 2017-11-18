@@ -191,3 +191,26 @@ footer {
 .post-widget .well{
     height:200px;
 }
+
+section {
+    width: 45%;
+    margin: 0 2% 2% 2%;
+    display: inline-block;
+    height: 270px;
+    overflow: hidden;
+    text-align: center;
+    padding: 30px;
+    position: relative;
+}
+
+section>a:hover {
+    text-decoration: none;
+}
+
+section>a>img{
+    width:40%;
+    float:left;
+    margin-right: 4%;
+    margin-bottom: 4%;
+}
+

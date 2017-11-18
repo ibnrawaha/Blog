@@ -8,12 +8,12 @@
 
 <h3>Posts</h3>
 
-<?php 
+@php 
 	$column = 0;
-?>
+@endphp
 
 	@foreach($posts as $post)
-
+{{-- 
 		@if ($column % 2 == 0 || $column == 0)
 			<div class="row">
 		@endif
@@ -30,12 +30,32 @@
 					</div>
 				</div>
 
-		<?php $column++ ?>
-		
+		@php 
+			$column++;
+		@endphp
+
 		@if ($column % 2 == 0)
 			<div class="clearfix"></div>
 			</div>
-		@endif
+		@endif 
+
+ --}}
+ 
+		
+		<section>
+			<a href="/posts/{{$post->id}}">
+				<img src="/storage/image/{{$post->image}}" alt="{{$post->title}}">
+				<h4>{{$post->title}}</h4>
+
+				@if(strlen($post->content) > 150)
+					<p>{!! substr($post->content, 0, 150) !!}... <span class="btn btn-danger">Read More</span></p>
+					{{-- <a href="/posts/{{$post->id}}" class="btn btn-danger read-more">Read More</a> --}}
+				@else
+					<p>{!! $post->content !!}</p>
+				@endif
+
+			</a>
+		</section>
 
 	@endforeach
 
