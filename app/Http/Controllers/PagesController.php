@@ -15,12 +15,18 @@ class PagesController extends Controller
      */
 	public function index(){
 
-		$pages = Page::all();
-		return view('pages')->with('pages', $pages);
-	}
+        if (auth()->user()) {
+    		$pages = Page::all();
+            return view('pages')->with('pages', $pages);
+        }
+        else {
+            return view('error.404');
+        }
+           
+    }
 
-	public function home(){
-		return view('pages.index');
+    public function home(){
+        return view('pages.index');
 	}
 
 	/**

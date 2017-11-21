@@ -21,7 +21,7 @@
 <div class="well">
 	<div class="col-kik-8">
 		<a href="/posts/{{$post->id}}">
-			<h6>{!!$post->title!!}</h6>
+			<h6>{{$post->title}}</h6>
 			@if (strlen($post->content) > 300)
 				<p>{!!substr($post->content, 0 , 300)!!} <span class="bg-dark">... Read More</span></p>
 			@else

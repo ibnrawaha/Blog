@@ -20,16 +20,23 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    {{-- <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Rancho|Yellowtail" rel="stylesheet">
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    {{-- <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'> --}}
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'> --}}
+    {{-- <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'> --}}
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template -->
-    <link href="{{ asset('css/agency.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/agency.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Slick Slider -->
+    <link href="{{ asset('slick/slick.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('slick/slick-theme.css') }}" rel="stylesheet" type="text/css">
+    
+    <!-- App style adjustments -->
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -41,6 +48,12 @@
     <header class="masthead">
         @yield('header')
     </header>
+
+    @if (Route::currentRouteName() == "")
+        @include('inc.message')
+        @yield('content')
+    
+    @else
     
     <div id="app">
         <div class="container">
@@ -48,32 +61,10 @@
             @yield('content')
         </div>
     </div>
-
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
-
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-
-
-    <!-- Plugin JavaScript -->
-    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
-
-    <!-- Contact form JavaScript -->
-    <script src="{{ asset('js/jqBootstrapValidation.js') }}"></script>
-    <script src="{{ asset('js/contact_me.js') }}"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="{{ asset('js/agency.min.js') }}"></script>
     
-    {{-- CK EDITOR --}}
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'article-ckeditor' );
-    </script>
+    @endif
+
+   
 
 
 

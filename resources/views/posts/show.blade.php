@@ -4,7 +4,7 @@
 	
 
 	<a href="{{ URL::previous() }}" class="btn btn-outline-secondary float-right"><b><< Back</b></a>
-	<h3>{!!$post->title!!}</h3>
+	<h3>{{$post->title}}</h3>
 	<small>Created at {{$post->created_at}}, by {{ucfirst($post->user->name)}}</small>
 	<hr>
 	<div class="d-flex justify-content-center">
