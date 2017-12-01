@@ -25,9 +25,10 @@
 
     @if (Auth::check())
     <div class="dropdown" id="navbarResponsive">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{ucfirst(auth()->user()->name)}}
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{strtok(ucfirst(auth()->user()->name), " ")}}
         <span class="caret"></span></button>
         <ul class="dropdown-menu">
+          <li><a href="/user/profile/{{auth()->user()->name}}">User Profile</a></li>
           <li><a href="/posts/create">Create Post</a></li>
           <li><a href="/pages">Manages Pages</a></li>
           <li><a href="/dashboard">Dashboard</a></li>

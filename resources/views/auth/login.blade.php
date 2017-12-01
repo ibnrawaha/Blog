@@ -1,10 +1,60 @@
 @extends('layouts.app')
 
 @section('content')
+
+<div class="loginForm">
+    <h1>User Login</h1>
+    
+    <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
+
+    <form method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+
+        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+            <label for="exampleInputEmail1">Email address</label>
+            @if ($errors->has('email'))
+            <span class="help-block">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{ old('email') }}" required autofocus>
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+
+        <div class="form-group {{ $errors->has('password') ? ' has-error': '' }}">
+            <label for="exampleInputPassword1">Password</label>
+            @if ($errors->has('password'))
+            <span class="help-block">
+                <strong>{{ $errors->first('password') }}</strong>
+            </span>
+            @endif
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+        </div>
+
+        <div class="form-check">
+            <label>
+                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+            </label>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Login</button>
+
+      <a class="btn btn-link" href="{{ route('password.request') }}">
+        Forgot Your Password?
+    </a>
+    
+</form>
+</div>
+
+
+<!--
+
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
+
+                <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -64,4 +114,6 @@
             </div>
         </div>
 </div>
+
+-->
 @endsection

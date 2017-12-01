@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home')->name('home');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
 // Route::get('/pages/create', 'PagesController@create');
@@ -29,3 +29,7 @@ Route::resource('/posts','PostsController');
 Route::post('/posts/{post}/comment/store', 'CommentController@store')->name('comment.store');
 
 Route::delete('/posts/{post}/comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
+
+Route::get('/user/profile/{profile}', 'ProfileController@index' )->name('user.profile');
+
+Route::put('/user/profile/{profile}/update' , 'ProfileController@update')->name('profile.update');

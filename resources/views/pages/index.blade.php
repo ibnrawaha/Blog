@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('header')
-@include('inc.slider')
+	@include('inc.slider')
 @endsection
 
 @section('content')
@@ -58,13 +58,16 @@
 	-->
 
 <div class="fixed-1">
-	<div>
+	<div class="col-md-8">
 	    <h1>Work With</h1>
-	    <h1>-=  <b>Experts</b>  =-</h1>
+	    <h1><u>Experts</u></h1>
+		<br>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi numquam hic pariatur harum. Perspiciatis ex accusamus maxime. Facere totam saepe obcaecati repellat corporis quibusdam fuga, enim laudantium quo est id! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque id vel impedit velit obcaecati nemo recusandae aut laudantium blanditiis! Mollitia nobis nisi excepturi sunt ipsam quis reiciendis, quas reprehenderit necessitatibus! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae itaque aliquid ipsum, ex iusto debitis, similique officiis ut eos saepe tenetur in optio repellendus tempora, maiores accusantium? Rerum ipsum, perspiciatis.</p>
+
 	</div>
 </div>
 
-<div class="section-1 bg-dark">
+<div class="section-1 bg-dark our-team">
 	<h2>Our Team</h2>
 	<div>
 		<img src="/images/team/1.jpg" alt="">
@@ -81,6 +84,27 @@
 		<h3>Amanda Gray</h3>
 		<p>Human Resource</p>
 	</div>
+</div>
+
+
+<div>
+
+	<?php $num = 1; ?>
+
+	@foreach ($posts as $post)
+		
+		<img src="/storage/image/{{$post->image}}" alt="" class="img-kik">
+
+		@php
+			$input = explode(' ', $post->content);
+			$slice = array_slice($input, 0, 10);
+			$output = implode($slice, " ");
+			echo $num++ ." - ". $output . "<br>" ;
+		@endphp
+
+
+	@endforeach
+
 </div>
 
 

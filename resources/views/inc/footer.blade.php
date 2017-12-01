@@ -45,7 +45,7 @@
           $('.kik-slider').slick({
             autoplay: true,
             dots: false,
-            arrows: false,
+            arrows: true,
             infinite: true
           });
         });

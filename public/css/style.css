@@ -8,8 +8,7 @@ body{
 }
 
 nav#mainNav {
-    border-bottom: 1px solid rgba(251, 255, 0, 0.3);
-    background-color: rgba(107, 33, 33, 0.3);
+    background-color: rgba(16, 38, 62, .4);
 }
 
 #mainNav .navbar-brand {
@@ -17,10 +16,39 @@ nav#mainNav {
     font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
 }
 
+.dropdown-menu {
+    margin-left: 260px;
+    padding: 0.5rem 5px;
+    margin: .125rem 0 0;
+    background-color: rgba(56, 25, 10, 0.86);
+}
+
+
+#mainNav.navbar-shrink {
+    background-color: rgb(16, 38, 62);
+}
+
+ul.dropdown-menu.show {
+    margin-left: -60px;
+}
+
+ul.dropdown-menu.show > li {
+    padding: 10px;
+    text-align: right;
+}
+
+ul.dropdown-menu.show > li:hover {
+    background-color: rgba(35, 16, 6, 0.9);
+}
+
+ul.dropdown-menu.show > li > a{
+    text-decoration: none;
+}
+
 header.masthead {
     /*background-image:url("/images/header-bg2.jpg");*/
-	background-image: none;
-	background-color: gray;	
+    background-image: none;
+    background-color: gray; 
     background-color: #0c0b09;
     background-repeat: no-repeat;
 }
@@ -40,12 +68,14 @@ header.masthead {
 
 #app .container {
     height: 100%;
-    padding-top: 150px;
+    /*padding-top: 150px;*/
+    margin-top: 103px;
+    padding-top: 50px;
     /*width: 1140px;*/
-    background-color: rgba(9, 8, 6, .8);
+    background-color: rgb(16, 38, 62);
     padding-left: 50px;
     padding-right: 50px;
-    min-height: 600px;
+    min-height: 800px;
 }
 
 
@@ -93,18 +123,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-.dropdown-menu {
-    margin-left: 260px;
-    padding: 0.5rem 5px;
-    margin: .125rem 0 0;
-    background-color: rgba(56, 25, 10, 0.86);
-}
-
 
 .col-kik-8 {
     position: relative;
     width: 100%;
     display: inline-block;
+
+}
+
+.col-kik-8 * {
+    text-align: left;
 }
 
 .col-kik-3 {
@@ -117,10 +145,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .col-kik-3>button.btn.btn-primary {
     margin: 0 10px;
-}
-
-#mainNav.navbar-shrink {
-    background-color: rgba(97, 210, 253, 0.3);
 }
 
 .col-kik-8>a {
@@ -231,6 +255,7 @@ section>a>img{
 }
 
 .slider-image {
+    height:630px;
     width:100%;
 }
 
@@ -245,9 +270,11 @@ section>a>img{
     transform: translate(-50%);
     color : #e8f5b7;
     font-family: 'Rancho', cursive;
-    font-size: 6em;
+    font-size: 5em;
     text-shadow: 1px 1px 15px #000000;
 }
+
+
 
 /* FIXED SECTION IN THE MAIN PAGE */
 
@@ -268,13 +295,19 @@ section>a>img{
     top: 20%;
     margin-bottom: 40px;
     transform: translate(-50%);
+    background-color: rgba(10,10,10,.5);
+    padding: 50px;
+}
+
+.fixed-1 > div > p {
+    text-align: justify;
 }
 
 /* INDEX PAGE SECTION 1 */
 
 .section-1 {
     position: relative;
-    background-color: #578088;
+    background-color: #696a70;
     height : 600px;
     /* margin: 50px auto; */
     /* width: 1141px; */
@@ -282,13 +315,15 @@ section>a>img{
 }
 
 .section-1 > div {
+    background-color: #000000a6;
     display: inline-block;
     width: 29%;
-    margin: 0%;
+    margin: 1%;
     /* background-color: #626b6f; */
     padding: 10px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     margin-top: 100px;
+    padding-top: 20px;
 }
 
 .section-1 > div> img {
@@ -296,10 +331,103 @@ section>a>img{
     height: 200px;
     margin-bottom: 20px;
     border-radius: 10px;
+    border-bottom: 4px dotted lightblue;
+    border-left: 4px dotted lightblue;
 }
 
 .section-1 > h2 {
     position: absolute;
     top: 5%;
     left: 5%;
+}
+
+.our-team {
+    background-image: url('/images/team/work-team.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: rgba(2,2,2,.5);
+}
+
+.img-kik {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+/**************/
+/* LOGIN FORM */
+/**************/
+
+.loginForm {
+    width: 400px;
+    background-color: #711010;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    position: relative;
+
+}
+
+.loginForm > h1  {
+    text-align: center;
+}
+
+.loginForm > button {
+    width: 100%;
+}
+
+.loginForm > i {
+    position: absolute;
+    top: 20px;
+    left: -100px;
+    background-color: #711010;
+    padding: 10px;
+    border-radius: 45px 0px 0px 45px;
+    color: wheat;
+    box-shadow: inset -4px 0px 5px 0px #31111187;
+}
+
+input.form-control, textarea.form-control {
+    background-color: #0a1d31;
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 0px;
+    color:white;
+}
+
+input.form-control:focus, textarea.form-control:focus {
+    background-color: #1d3754;
+    border: none;
+    border-bottom: 2px solid white;
+    border-radius: 0px;
+    color:white;
+    transition: background-color .3s;
+}
+
+input.form-control::placeholder {
+    color:#ffffffad;
+}
+
+input.form-control:disabled {
+    background-color: #0a1d31;
+    opacity: 1;
+    color: gray;
+}
+
+
+.spacer {
+    padding-bottom: 50px;
+}
+
+.posts-paragraph {
+    max-width: 70%;
+    display:block;
+    margin:auto;
+    /*background-color: white;*/
+}
+
+.posts-paragraph > *{
+    text-align: justify;
 }
