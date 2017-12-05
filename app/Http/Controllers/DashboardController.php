@@ -26,7 +26,7 @@ class DashboardController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $posts = Post::orderBy('id','desc')->where('user_id', '=', $user_id)->get();
+        $posts = Post::orderBy('id','desc')->where('user_id', '=', $user_id)->paginate(10);
         
         // var_dump($k['title']);
         return view('dashboard')->with('posts', $posts);

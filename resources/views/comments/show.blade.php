@@ -14,7 +14,7 @@
 
 
 @if(count($comments) < 1)
-	<h6 class="bg-danger padding-headers">No one responded to this.</h6>
+	<h6 class="bg-danger padding-headers">Be the first to respond.</h6>
 @else
 @foreach($comments as $comment)
 <div class="well">

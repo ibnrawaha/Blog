@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
 use App\Comment;
+use App\User;
 // use App\User;
 
 class PostsController extends Controller
@@ -27,7 +28,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'desc')->get();
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
 
 
         return view('posts.index')->with('posts', $posts);
@@ -64,7 +65,7 @@ class PostsController extends Controller
             $fileExplode = explode('.', $file);
             $fileToStore = $fileExplode[0]. time() . "." .  $fileExplode[1];
             // MUST BE ADDED TO DECLARE THE PATH
-            $path = $request->file('image')->storeAs('public/image', $fileToStore);
+            $path = $request->file('image')->storeAs('public/image/uploads', $fileToStore);
         }
         else {
             // IF THERE ARE NO IMAGES
@@ -106,6 +107,41 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
+
+        // $spacing = 50;
+        // for ($i=0; $i < 15 ; $i++) { 
+            
+        //     $spacing = $spacing+10;
+        //     echo "
+        //     /* Margin Top ".$spacing."px */<br>
+        //     .mg-t-$spacing {
+        //         margin-top: ".$spacing."px;
+        //     }
+        //     <br><br>";
+
+        //     echo "
+        //     /* Margin Right ".$spacing."px */<br>
+        //     .mg-r-$spacing {
+        //         margin-right: ".$spacing."px;
+        //     }
+        //     <br><br>";
+
+        //     echo "
+        //     /* Margin Bottom ".$spacing."px */<br>
+        //     .mg-b-$spacing {
+        //         margin-bottom: ".$spacing."px;
+        //     }
+        //     <br><br>";
+
+        //     echo "
+        //     /* Margin Left ".$spacing."px */<br>
+        //     .mg-l-$spacing {
+        //         margin-left: ".$spacing."px;
+        //     }
+        //     <br><br>";
+        // }
+
+
         
         $post = Post::find($id);
 
@@ -116,7 +152,6 @@ class PostsController extends Controller
             // return redirect('/posts')->with('error', 'An Unauthorized Page');
             return view('error.404');
         }
-        
     }
 
     /**
@@ -133,12 +168,37 @@ class PostsController extends Controller
         $this->validate($request, [
             'title' => 'required',
             'content' => 'required',
+            // 'image' => 'image|max:2048|mimes:jpeg,png,jpg,gif,svg',
         ]);
+
+        // dd($request);
+
+        if($request->hasFile('image')){
+            // TO GET THE REAL FILE NAME
+            $file = $request->file('image')->getClientOriginalName();
+            $fileExplode = explode('.', $file);
+            $fileToStore = $fileExplode[0]. time() . "." .  $fileExplode[1];
+            // MUST BE ADDED TO DECLARE THE PATH
+            $path = $request->file('image')->storeAs('public/image/uploads', $fileToStore);
+
+            // DELETE OLD IMAGE IF EXIST
+            if($post->image != 'noimage.jpg'){
+
+                // return $post->image;
+                Storage::delete('/public/image/uploads/'. $post->image);
+
+            }
+        }
+        else {
+            // IF THERE IS NO IMAGE
+            $fileToStore = 'noImage.jpg';
+        }
 
         $post->title = $request->input('title');
         $post->content = $request->input('content');
+        $post->image = $fileToStore;
         $post->save();
-        
+        // return $fileToStore;
         return redirect('/posts/'.$post->id)->with('post', $post);
     }
 
@@ -154,8 +214,16 @@ class PostsController extends Controller
         $post = Post::find($id);
         
         if(auth()->user()->id == $post->user_id){
-            $post->delete();
+            
+            // DELETE IMAGE
+            if($post->image != 'noimage.jpg'){
+                
+                $filePath = '/public/image/uploads/';
+                Storage::delete($filePath.$post->image);
+            }
 
+            //DELETE POST
+            $post->delete();
             return redirect('/dashboard')->with('error', 'Post Deleted !');
         }
         else{
@@ -166,4 +234,24 @@ class PostsController extends Controller
 
 
     }
+    
+
+    public function userPosts($username){
+
+        $user = User::where('name', $username)->get()->first();
+
+        if($user){
+            
+            $posts = Post::where('user_id', $user->id)->paginate(10);
+
+            return view('posts.user_posts')->with('posts', $posts)->with('user', $user);
+        }
+
+        else {
+            return view('error.404');
+        }
+
+
+    }
+
 }

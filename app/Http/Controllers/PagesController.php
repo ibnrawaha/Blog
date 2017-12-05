@@ -7,22 +7,23 @@ use App\Page;
 
 class PagesController extends Controller
 {
-	
-	/**
+
+    public function __construct(){
+
+            $this->middleware('auth', ['only' => 'index']);
+        
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-	public function index(){
+    public function index(){
 
-        if (auth()->user()) {
-    		$pages = Page::all();
-            return view('pages')->with('pages', $pages);
-        }
-        else {
-            return view('error.404');
-        }
-           
+        $pages = Page::all();
+        return view('pages')->with('pages', $pages);
+
     }
 
     public function home(){

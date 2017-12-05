@@ -30,6 +30,31 @@ class ProfileController extends Controller
 
     }
 
+    public function store(Request $request){
+
+    	$this->validate($request, [
+				'full_name' => 'required',
+				// 'phone' => 'regex:/(01)[0-9]{9}/',
+				// 'zip_code' => 'integer',
+				]);
+
+    	$profile = new Profile;
+    	$profile->user_id = auth()->user()->id;
+    	$profile->full_name = $request->input('full_name');
+		$profile->job = $request->input('job');
+		$profile->degree = $request->input('degree');
+		$profile->about = $request->input('about');
+		$profile->phone = $request->input('phone');
+		$profile->dob = $request->input('dob');
+		$profile->address = $request->input('address');
+		$profile->city = $request->input('city');
+		$profile->country = $request->input('country');
+		$profile->zip_code = $request->input('zip_code');
+		$profile->save();
+		
+
+    }
+
     // `id`, `user_id`, `full_name`, `job`, `degree`, `about`, `phone`, `address`, `city`, `country`, `zip_code`, `created_at`, `updated_at`SELECT * FROM `profiles` WHERE 1
 
     public function update(Request $request, $user) {
@@ -41,24 +66,37 @@ class ProfileController extends Controller
 		if ($user->name == auth()->user()->name) {
 
 			$this->validate($request, [
-				'full_name' => 'required',
-				'phone' => 'regex:/(01)[0-9]{9}/',
-				'zip_code' => 'integer',
+				// 'full_name' => 'required',
+				// 'phone' => 'regex:/(01)[0-9]{9}/',
+				// 'zip_code' => 'integer',
 				]);
 
-			$profile->full_name = $request->input('full_name');
-			$profile->job = $request->input('job');
-			$profile->degree = $request->input('degree');
-			$profile->about = $request->input('about');
-			$profile->phone = $request->input('phone');
-			$profile->address = $request->input('address');
-			$profile->city = $request->input('city');
-			$profile->country = $request->input('country');
-			$profile->zip_code = $request->input('zip_code');
-			$profile->save();
+			if ($profile){
+				
+				$profile->full_name = $request->input('full_name');
+				$profile->job = $request->input('job');
+				$profile->degree = $request->input('degree');
+				$profile->about = $request->input('about');
+				$profile->phone = $request->input('phone');
+				$profile->dob = $request->input('dob');
+				$profile->address = $request->input('address');
+				$profile->city = $request->input('city');
+				$profile->country = $request->input('country');
+				$profile->zip_code = $request->input('zip_code');
+				$profile->save();
+				
+				return redirect('/user/profile/'.$user->name)->with('success', 'Your Profile Successfully Updated');
+
+			}
+
+			else {
+				// echo "No Profile";
+				$this->store($request);
+				return redirect('/user/profile/'.$user->name)->with('success', 'Your Profile Successfully Updated');
+			}
 		
-			return redirect('/user/profile/'.$user->name)->with('success', 'Your Profile Successfully Updated');
 		}
+
 		else {
 			return view('error.404');
 		}

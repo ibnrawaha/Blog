@@ -16,6 +16,8 @@
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> --}}
 
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -39,9 +41,16 @@
     <link href="{{ asset('slick/slick.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('slick/slick-theme.css') }}" rel="stylesheet" type="text/css">
     
+    
     <!-- App style adjustments -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 
+    <!-- Margin and Padding Custom File -->
+    <link href="{{ asset('css/margin-padding.css') }}" rel="stylesheet" type="text/css">
+    
+
+
+    
 
 </head>
 <body>

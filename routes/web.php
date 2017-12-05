@@ -26,6 +26,8 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 Route::resource('/posts','PostsController');
 
+Route::get('/posts/user/{username}', 'PostsController@userPosts')->name('user.posts');
+
 Route::post('/posts/{post}/comment/store', 'CommentController@store')->name('comment.store');
 
 Route::delete('/posts/{post}/comment/{comment}', 'CommentController@destroy')->name('comment.destroy');

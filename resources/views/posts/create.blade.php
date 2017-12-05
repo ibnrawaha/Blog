@@ -9,7 +9,7 @@
 		<label for="Title">Title</label>
 		<input type="text" placeholder="Enter Title" class="form-control" name="title">
 		
-		<label for="Title">Content</label>
+		<label for="Content">Content</label>
 		<textarea name="content" id="article-ckeditor" cols="30" rows="10" placeholder="Enter Content" class="form-control"></textarea>
 		
 		<br>
