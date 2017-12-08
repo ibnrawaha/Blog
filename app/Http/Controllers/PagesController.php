@@ -73,7 +73,7 @@ class PagesController extends Controller
 		$page->user_id = auth()->user()->id;
 		$page->save();
 
-		return redirect('/pages')->with('success', 'Page ' . ucfirst($request->title) . ' Created Successfully');
+		return redirect('/pages')->with('success', 'Page "' . ucfirst($request->title) . '" Created Successfully');
 
 	}
 
@@ -86,7 +86,7 @@ class PagesController extends Controller
 	public function edit($title){
 
         if(auth()->user()){
-    		$page = Page::where('title', '=', $title)->get()->first();
+    		$page = Page::where('title', '=', str_replace("-", " ", $title))->get()->first();
 
     		return view('pages.edit')->with('page', $page);
             
@@ -135,7 +135,7 @@ class PagesController extends Controller
         $page->user_id = auth()->user()->id;
         $page->save();
 
-        return redirect('pages')->with('success', 'Page Edited Successfully');
+        return redirect('pages')->with('success', 'Page "'. $page->title .'" Edited Successfully');
 
 	}
 
@@ -148,7 +148,7 @@ class PagesController extends Controller
 	public function show($title)
     {
         // $page = Page::find($title);
-        $page = Page::where('title', '=', $title)->get()->first();
+        $page = Page::where('title', '=', str_replace("-", " ", $title))->get()->first();
 
         return view('pages.show')->with('page',$page);
     }
@@ -162,7 +162,7 @@ class PagesController extends Controller
      */
     public function destroy($id){
     	$page = Page::find($id);
-    	$message = "Page " . ucfirst($page->title). " Was Deleted Successfully";
+    	$message = 'Page "' . ucfirst($page->title). '" Was Deleted Successfully';
     	$page->delete();
 
     	return redirect('/pages')->with("error", $message);

@@ -94,6 +94,9 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        // $title = str_replace('-', ' ', $post->title);
+        // $post->title = str_replace('-', ' ', $title);
+        // $post = Post::where('title', str_replace('-', ' ', $title))->first();
         $comments = Comment::orderBy('id', 'asc')->where('post_id', '=', $id)->get();
 
         return view('posts.show')->with('post',$post)->with('comments', $comments);

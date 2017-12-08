@@ -14,7 +14,7 @@
         </li>
         @foreach ($pages as $page)
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/pages/{{$page->title}}">{{$page->title}}</a>
+            <a class="nav-link js-scroll-trigger" href="/pages/{{str_replace(" ", "-", strtolower($page->title))}}">{{$page->title}}</a>
           </li>
         @endforeach
         <li class="nav-item">

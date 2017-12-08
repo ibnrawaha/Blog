@@ -13,7 +13,7 @@
                         <h5><a href="pages/{{$page->title}}">{{$page->title}}</a></h5>
 
                         <div class='float-right'>
-                            <a href="/pages/{{$page->title}}/edit" class="btn btn-primary float-left buttons">Edit Page</a>
+                            <a href="/pages/{{str_replace(" ", "-", strtolower($page->title))}}/edit" class="btn btn-primary float-left buttons">Edit Page</a>
 
                             <form action="{{route('pages.destroy', $page->id)}}" method="post" class="float-right buttons">
                                 {!!csrf_field()!!}

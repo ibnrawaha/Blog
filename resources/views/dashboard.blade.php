@@ -24,7 +24,7 @@
                 @foreach ($posts as $post)
                 <div class="well pd-t-15 pd-b-15 pd-l-15 pd-r-15">
                     <div class="col-kik-8">
-                        <a href="/posts/{{$post->id}}">
+                        <a href="/posts/{{ $post->id }}/{{ str_replace(' ', '-', strtolower($post->title)) }}">
                             <div class="thumbImgDiv float-left mg-r-20">
                                 <img src="/storage/image/uploads/{{$post->image}}" alt="" class="thumbImg">
                             </div>

@@ -13,18 +13,24 @@
 
 
 Route::get('/', 'PagesController@home')->name('home');
-Route::get('/about', 'PagesController@about');
-Route::get('/services', 'PagesController@services');
+// Route::get('/about', 'PagesController@about');
+// Route::get('/services', 'PagesController@services');
 // Route::get('/pages/create', 'PagesController@create');
 // Route::post('/pages', 'PagesController@store');
 
-Route::resource('/pages', 'PagesController');
-
 Auth::routes();
+
+//PAGES
+Route::resource('/pages', 'PagesController');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::resource('/posts','PostsController');
+
+// POSTS
+Route::resource('/posts','PostsController', ['except' => [
+	'show',
+	]]);
+Route::get('/posts/{id}/{title}', 'PostsController@show')->name('posts.show');
 
 Route::get('/posts/user/{username}', 'PostsController@userPosts')->name('user.posts');
 
@@ -32,6 +38,8 @@ Route::post('/posts/{post}/comment/store', 'CommentController@store')->name('com
 
 Route::delete('/posts/{post}/comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
 
+
+// PROFILE
 Route::get('/user/profile/{profile}', 'ProfileController@index' )->name('user.profile');
 
 Route::put('/user/profile/{profile}/update' , 'ProfileController@update')->name('profile.update');

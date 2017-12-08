@@ -8,8 +8,10 @@
 {{-- {{dd($page)}} --}}
 <div class="page-style">
 
+
 	<h1>{!!ucwords($page->title)!!}</h1>
 	<br>
+	
 	{{-- <img src="/storage/image/{{$page->image}}" alt="fff"> --}}
 	<br>
 	<p>{!!$page->content!!}</p>
