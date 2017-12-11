@@ -51,5 +51,23 @@
         });
     </script>
 
+
+    <script>
+
+        // for (var i = 0; i < delItem.length; i++) {
+        //     delItem[i].onclick = function(){
+        //         var del = confirm("Are You Sure You Want To Delete?!");
+
+        //         if (del = false){
+        //             return false;
+        //         }
+
+        //     };
+        // };
+
+
+        
+    </script>
+
 </body>
 </html>

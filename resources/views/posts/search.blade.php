@@ -2,32 +2,11 @@
 
 @section('content')
 
-<h1>The Blog</h1>
-<small><i>{{ $posts->lastItem() }} posts of {{ $posts->total() }} post</i></small>
+<h1>Search Results for <small>"{{$posts->search}}"</small></h1>
+{{-- <small><i>{{ $posts->lastItem() }} posts of {{ $posts->total() }} post</i></small> --}}
 
-@if (auth()->user())
-	<div class="height-kik-40">
-		<button class="btn btn-primary float-right"><a href="/posts/create">Create New Post</a></button>
-	</div>
-@else
-
-	<div class="well bg-danger">
-		<a href="/login">Login</a> or <a href="/register">Register</a> to add posts.
-	</div>
-
-@endif
-
-<form action="/search" method="get" class="form-group mg-t-20">
-	{{-- {!! csrf_field() !!} --}}
-	<input type="text" class="form-control float-left col-md-6 mg-r-10" name="search" placeholder="Search for a post... ">
-	<button class="btn btn-default form-control col-md-2 mg-l-10" >Search</button>
-</form>
-@if (isset($_GET['search']))
-	<h3>Results for <small>{{$_GET['search']}}</small> </h3>
-@endif
-
-{{ $posts->links() }}
-
+{{-- {{ $posts->links() }} --}}
+<h6>" {{count($posts)}} Resault "</h6>
 @foreach ($posts as $post)
 
 <div class="well pd-t-15 pd-b-15 pd-l-15 pd-r-15">
@@ -68,6 +47,6 @@
 
 
 
-{{ $posts->links() }}
+{{-- {{ $posts->links() }} --}}
 
 @endsection

@@ -56,7 +56,7 @@ class CommentController extends Controller
         
         $comment->save();
 
-        return redirect('/posts/'. $comment->post_id )->with('comment', $comment);
+        return redirect('/posts/'. $comment->post_id .'/'. $request->input('post_title'))->with('comment', $comment);
 
 
 

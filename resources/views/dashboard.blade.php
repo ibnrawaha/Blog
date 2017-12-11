@@ -38,11 +38,14 @@
                         </a>
                         <div class="float-right">
                             <a href="/posts/{{$post->id}}/edit" class="btn btn-primary float-left buttons">Edit</a>
-                            <form action="{{route('posts.destroy', $post->id)}}" method="post" class="buttons float-right">
+                            {{-- <form action="{{route('posts.destroy', $post->id)}}" method="post" class="buttons float-right">
                                 {!!csrf_field()!!}
                                 {{method_field('DELETE')}}
-                                <button class="btn btn-danger" >Delete</button>
-                            </form>
+                                <button class="btn btn-danger" id="delItem">Delete</button>
+                            </form> --}}
+                            <a href="{{route('posts.delete', $post->id)}}" class="btn btn-danger float-right buttons">Delete</a>
+
+
                         </div>
                     </div>
                 </div>

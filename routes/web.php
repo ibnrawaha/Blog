@@ -22,21 +22,25 @@ Auth::routes();
 
 //PAGES
 Route::resource('/pages', 'PagesController');
+Route::get('/pages/{page}/delete', 'PagesController@delete')->name('pages.delete'); // Deleting Confirmation
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 
 // POSTS
+// Route::resource('/posts','PostsController');
 Route::resource('/posts','PostsController', ['except' => [
 	'show',
 	]]);
-Route::get('/posts/{id}/{title}', 'PostsController@show')->name('posts.show');
+Route::get('/posts/{post}/delete', 'PostsController@delete')->name('posts.delete'); // Deleting Confirmation
+Route::get('/posts/user/{username}', 'PostsController@userPosts')->name('user.posts'); // To show posts for a user
+Route::get('/posts/{id}/{title}', 'PostsController@show')->name('posts.show');	// Show posts with id/title URL
+Route::get('/search', 'PostsController@search')->name('search');
 
-Route::get('/posts/user/{username}', 'PostsController@userPosts')->name('user.posts');
 
-Route::post('/posts/{post}/comment/store', 'CommentController@store')->name('comment.store');
+Route::post('/posts/{id}/comment/store', 'CommentController@store')->name('comment.store');
 
-Route::delete('/posts/{post}/comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
+Route::delete('/posts/{id}/comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
 
 
 // PROFILE

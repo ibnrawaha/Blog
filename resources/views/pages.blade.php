@@ -15,12 +15,8 @@
                         <div class='float-right'>
                             <a href="/pages/{{str_replace(" ", "-", strtolower($page->title))}}/edit" class="btn btn-primary float-left buttons">Edit Page</a>
 
-                            <form action="{{route('pages.destroy', $page->id)}}" method="post" class="float-right buttons">
-                                {!!csrf_field()!!}
-                                {{method_field('DELETE')}}
-                                <button name="submit" class="btn btn-danger">Delete</button>
-                                
-                            </form>
+                            <a href="/pages/{{str_replace(" ", "-", strtolower($page->title))}}/delete" class="btn btn-danger float-right buttons">Delete Page</a>
+
                         </div>
                         <div class="clearfix"></div>
                     </div>

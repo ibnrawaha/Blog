@@ -10,7 +10,7 @@ class PagesController extends Controller
 
     public function __construct(){
 
-            $this->middleware('auth', ['only' => 'index']);
+            $this->middleware('auth', ['except'=>['show', 'home']]);
         
     }
     
@@ -153,6 +153,13 @@ class PagesController extends Controller
         return view('pages.show')->with('page',$page);
     }
 
+    public function delete($title){
+
+        $page = Page::where('title', str_replace("-", " ", $title))->first();
+
+        return view('pages.delete')->with('page', $page);
+
+    }
 
     /**
      * Remove the specified resource from storage.

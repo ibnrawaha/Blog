@@ -7,6 +7,7 @@
 		{!! csrf_field() !!}
 		<textarea name="comment" id="" cols="80" rows="5" class="form-control" placeholder="Type a comment"></textarea>
 		<input type="hidden" value="{{$post->id}}" name="post_id">
+		<input type="hidden" value="{{str_replace(' ', '-', $post->title)}}" name="post_title">
 
 		<button class="btn btn-primary form-control" name="submit">Respond to this</button>
 	</form>

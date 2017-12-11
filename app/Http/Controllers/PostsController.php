@@ -19,16 +19,25 @@ class PostsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'userPosts']]);
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+
+        // Incase searching
+        if ($request->search){
+            $posts = Post::search($request->search)->paginate(10);
+            $posts->search = $request->search;
+        }
+        else {
+            // incase browsing all posts
+            $posts = Post::orderBy('id', 'desc')->paginate(10);
+        }
 
 
         return view('posts.index')->with('posts', $posts);
@@ -111,41 +120,6 @@ class PostsController extends Controller
     public function edit($id)
     {
 
-        // $spacing = 50;
-        // for ($i=0; $i < 15 ; $i++) { 
-            
-        //     $spacing = $spacing+10;
-        //     echo "
-        //     /* Margin Top ".$spacing."px */<br>
-        //     .mg-t-$spacing {
-        //         margin-top: ".$spacing."px;
-        //     }
-        //     <br><br>";
-
-        //     echo "
-        //     /* Margin Right ".$spacing."px */<br>
-        //     .mg-r-$spacing {
-        //         margin-right: ".$spacing."px;
-        //     }
-        //     <br><br>";
-
-        //     echo "
-        //     /* Margin Bottom ".$spacing."px */<br>
-        //     .mg-b-$spacing {
-        //         margin-bottom: ".$spacing."px;
-        //     }
-        //     <br><br>";
-
-        //     echo "
-        //     /* Margin Left ".$spacing."px */<br>
-        //     .mg-l-$spacing {
-        //         margin-left: ".$spacing."px;
-        //     }
-        //     <br><br>";
-        // }
-
-
-        
         $post = Post::find($id);
 
         if(auth()->user()->id == $post->user_id){
@@ -202,9 +176,15 @@ class PostsController extends Controller
         $post->image = $fileToStore;
         $post->save();
         // return $fileToStore;
-        return redirect('/posts/'.$post->id)->with('post', $post);
+        return redirect('/posts/'.$post->id.'/'.$post->title)->with('post', $post);
+
     }
 
+    public function delete($id) {
+        $post = Post::find($id);
+
+        return view('posts.delete')->with('post', $post);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -255,6 +235,18 @@ class PostsController extends Controller
         }
 
 
+    }
+
+    public function search(Request $request){
+        
+        // return $request->search;
+        // $posts = Post::search($request->search)->paginate();
+        $posts = Post::search($request->search)->get();
+        // $posts = Post::search('qui')->paginate(10);
+        $posts->search = $request->search;
+
+        // return 'hel';
+        return view('posts.search')->with('posts', $posts);
     }
 
 }
