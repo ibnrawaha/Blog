@@ -68,9 +68,20 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Request $request, $id)
     {
-        //
+        $count = $request->newCommentsCount;
+        if($request->data){
+            $stat = "YES";
+        }
+        else {
+            $stat = "NO";
+        }
+        $post = Post::find($id);
+
+        $comments = Comment::orderBy('id', 'asc')->where('post_id', '=', $id)->limit($count)->get();
+
+        return view('posts.show')->with('post' ,$post)->with('comments', $comments)->with('stat', $stat);
     }
 
     /**

@@ -13,12 +13,46 @@
 	</form>
 </div>
 
+<button id="loadComments">Load Comments</button>
+{{$stat}}
+<script>
+	$(document).ready(function(){
+		var commentsCount = 0;
+		$("#loadComments").click(function(){
+			var commentsCount = commentsCount +2;
+			$.get('{{ route('comment.show', [$post->id, $post->title]) }}', function(data){
+				data {
+					newCommentsCount: commentsCount
+				};
+			});
+		});
+	});
+</script>
+<!--
+<script>
+	$(document).ready(function(){
+		var commentsCount = 0;
+		$("#loadComments").click(function(){
+			var commentsCount = commentsCount +2;
+			$("#comments").load("{{ route('comment.show', [$post->id, $post->title]) }}",
+			{
+				method: get,
+				newCommentsCount: commentsCount
+			});
+		});
+	});
+</script>
+-->
+
 
 @if(count($comments) < 1)
 	<h6 class="bg-danger padding-headers">Be the first to respond.</h6>
 @else
+
+
+
 @foreach($comments as $comment)
-<div class="well">
+<div class="well" id="comments">
 	<div>
 		<strong>{{ucwords($comment->user->name)}}</strong><br>
 		<p>{{$comment->comment}}</p>
@@ -39,4 +73,5 @@
 	**************** END DELETE COMMENT -->
 </div>	
 @endforeach
+
 @endif

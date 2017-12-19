@@ -4,6 +4,22 @@
 
 <h1>The Blog</h1>
 <small><i>{{ $posts->lastItem() }} posts of {{ $posts->total() }} post</i></small>
+{{-- <pre> --}}
+	<?php 
+		// var_dump($_SERVER);  
+		$path = $_SERVER['DOCUMENT_ROOT']."/data.txt";
+	?>
+{{-- </pre> --}}
+
+
+<div id="ajaxTest">
+	<p>This is Paragraph</p>
+</div>
+<button id="btn" onclick="changeTXT()">Change text</button>
+
+
+
+
 
 @if (auth()->user())
 	<div class="height-kik-40">

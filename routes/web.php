@@ -39,7 +39,7 @@ Route::get('/search', 'PostsController@search')->name('search');
 
 
 Route::post('/posts/{id}/comment/store', 'CommentController@store')->name('comment.store');
-
+Route::get('/posts/{id}/{title}', 'CommentController@show')->name('comment.show');
 Route::delete('/posts/{id}/comment/{comment}', 'CommentController@destroy')->name('comment.destroy');
 
 

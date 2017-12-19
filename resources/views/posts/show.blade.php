@@ -2,7 +2,7 @@
 
 @section('content')
 
-
+{{-- {{dd($posts)}} --}}
 @if (auth()->user() && auth()->user()->id == $post->user_id)
 	<a href="/posts/{{$post->id}}/edit" class="btn btn-primary buttons float-right">Edit</a>
 @endif
