@@ -86,7 +86,7 @@
 	</div>
 </div>
 
-
+<!--
 <div>
 
 	<?php $num = 1; ?>
@@ -106,6 +106,6 @@
 	@endforeach
 
 </div>
-
+-->
 
 @endsection

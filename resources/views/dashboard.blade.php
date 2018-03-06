@@ -8,7 +8,6 @@
             <div class="panel-heading"><h1>Dashboard</h1></div>
             <a href="/posts/create" class="btn btn-primary float-right">Create a Post</a>
 
-
             <div class="panel-body">
                 @if (session('status'))
                 <div class="alert alert-success">
